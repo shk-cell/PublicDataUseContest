@@ -342,10 +342,6 @@
       <div id="chartTrend" style="height:300px"></div>
     </div>
     <div class="chart-card full">
-      <div class="card-title">연도별 동복 단가 변화</div>
-      <div id="chartDong" style="height:320px"></div>
-    </div>
-    <div class="chart-card full">
       <div class="card-title">지역 내 단가 분포</div>
       <div id="chartDist"></div>
     </div>
@@ -577,28 +573,7 @@ function renderResult(s) {
     hovermode: "x unified",
   }, {responsive: true, displayModeBar: false});
 
-  // ── 차트 2: 동복 바 ──
-  Plotly.newPlot("chartDong", [
-    {
-      x: dongY, y: dongV, name: "동복",
-      type: "bar",
-      marker: {color: dongV.map((v, i) => i === dongV.length - 1 ? C_DONG : "#BFDBFE")},
-      hovertemplate: "%{x}년: %{y:,}원<extra></extra>",
-      text: dongV.map(v => v.toLocaleString("ko-KR")),
-      textposition: "outside",
-      textfont: {size: 10},
-    }
-  ], {
-    margin: {t: 10, b: 40, l: 70, r: 20},
-    xaxis: {title: "연도", fixedrange: true},
-    yaxis: {title: "원", tickformat: ",", fixedrange: true},
-    plot_bgcolor: "#fafafa",
-    paper_bgcolor: "transparent",
-    height: 320,
-    showlegend: false,
-  }, {responsive: true, displayModeBar: false});
-
-  // ── 차트 3 + 인근 학교 테이블 ──
+  // ── 차트 2 + 인근 학교 테이블 ──
   renderNearby(s, latestY, latestD);
 }
 
