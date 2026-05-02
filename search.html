@@ -49,6 +49,18 @@
       text-decoration: none;
     }
     .site-logo span { color: var(--accent); }
+    .home-link {
+      margin-left: auto;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .home-link:hover { background: var(--bg); color: var(--text); }
 
     /* ── 검색 영역 ── */
     .search-hero {
@@ -308,6 +320,7 @@
 <!-- 헤더 -->
 <header class="site-header">
   <a class="site-logo" href="javascript:void(0)" onclick="resetPage()">교복값이 <span>궁금해</span></a>
+  <a class="home-link" href="index.html">← 메인 홈</a>
 </header>
 
 <!-- 검색 -->
