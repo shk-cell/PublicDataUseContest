@@ -563,9 +563,13 @@ function renderResult(s) {
       hovertemplate: "%{x}년 하복: %{y:,}원<extra></extra>",
     },
   ], {
-    margin: {t: 10, b: 40, l: 60, r: 20},
+    margin: {t: 10, b: 40, l: 80, r: 20},
     xaxis: {title: "연도", fixedrange: true},
-    yaxis: {title: "가격 (원)", tickformat: ","},
+    yaxis: {
+      title: "가격 (원)",
+      tickformat: ",",
+      automargin: true,
+    },
     legend: {orientation: "h", y: 1.15},
     plot_bgcolor: "#fafafa",
     paper_bgcolor: "transparent",
