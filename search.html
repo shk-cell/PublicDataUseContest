@@ -345,9 +345,9 @@
       <div class="card-title">연도별 동복 단가 변화</div>
       <div id="chartDong" style="height:240px"></div>
     </div>
-    <div class="chart-card">
+    <div class="chart-card full">
       <div class="card-title">지역 내 단가 분포</div>
-      <div id="chartDist" style="height:240px"></div>
+      <div id="chartDist"></div>
     </div>
   </div>
 
@@ -636,6 +636,7 @@ function renderNearby(s, latestY, latestD) {
     distColors.splice(pos, 0, C_DONG);
   }
 
+  const distH = Math.max(300, distNames.length * 26 + 80);
   Plotly.newPlot("chartDist", [
     {
       x: distPrices,
@@ -646,16 +647,16 @@ function renderNearby(s, latestY, latestD) {
       hovertemplate: "%{y}<br>동복: %{x:,}원<extra></extra>",
     }
   ], {
-    margin: {t: 10, b: 40, l: 10, r: 60},
+    margin: {t: 10, b: 40, l: 10, r: 70},
     xaxis: {title: "원", tickformat: ",", fixedrange: true},
     yaxis: {
-      tickfont: {size: 10},
+      tickfont: {size: distNames.length > 25 ? 8 : 10},
       fixedrange: true,
       automargin: true,
     },
     plot_bgcolor: "#fafafa",
     paper_bgcolor: "transparent",
-    height: 240,
+    height: distH,
     showlegend: false,
   }, {responsive: true, displayModeBar: false});
 
