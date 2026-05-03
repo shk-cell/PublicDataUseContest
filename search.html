@@ -354,10 +354,6 @@
       <div class="card-title">연도별 교복 단가 추이</div>
       <div id="chartTrend" style="height:300px"></div>
     </div>
-    <div class="chart-card full">
-      <div class="card-title">지역 내 단가 분포</div>
-      <div id="chartDist"></div>
-    </div>
   </div>
 
   <!-- 인근 학교 -->
@@ -613,44 +609,7 @@ function renderNearby(s, latestY, latestD) {
   const maxP = Math.max(...allPrices);
   const minP = Math.min(...allPrices);
 
-  // ── 차트 3: 지역 분포 ──
-  const distNames  = withPrice.map(x => x.name);
-  const distPrices = withPrice.map(x => x.price);
-  const distColors = withPrice.map(x => x.name === s.name ? C_DONG : "#93C5FD");
-
-  // 현재 학교가 없으면 삽입
   const meIdx = withPrice.findIndex(x => x.id === s.id);
-  if (meIdx < 0 && latestD != null) {
-    const insertAt = distPrices.findIndex(p => p > latestD);
-    const pos = insertAt < 0 ? distPrices.length : insertAt;
-    distNames.splice(pos, 0, s.name + " ★");
-    distPrices.splice(pos, 0, latestD);
-    distColors.splice(pos, 0, C_DONG);
-  }
-
-  const distH = Math.max(300, distNames.length * 26 + 80);
-  Plotly.newPlot("chartDist", [
-    {
-      x: distPrices,
-      y: distNames,
-      type: "bar",
-      orientation: "h",
-      marker: {color: distColors},
-      hovertemplate: "%{y}<br>동복: %{x:,}원<extra></extra>",
-    }
-  ], {
-    margin: {t: 10, b: 40, l: 10, r: 70},
-    xaxis: {title: "원", tickformat: ",", fixedrange: true},
-    yaxis: {
-      tickfont: {size: distNames.length > 25 ? 8 : 10},
-      fixedrange: true,
-      automargin: true,
-    },
-    plot_bgcolor: "#fafafa",
-    paper_bgcolor: "transparent",
-    height: distH,
-    showlegend: false,
-  }, {responsive: true, displayModeBar: false});
 
   // ── 인근 학교 테이블 ──
   document.getElementById("nearbyMeta").textContent =
