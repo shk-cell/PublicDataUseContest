@@ -539,8 +539,9 @@
   function openSearch() {
     const modal = document.getElementById('searchModal');
     const frame = document.getElementById('searchFrame');
-    if (!frame.src || frame.src === window.location.href) {
+    if (!frame.dataset.loaded) {
       frame.src = 'search.html';
+      frame.dataset.loaded = '1';
     }
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
