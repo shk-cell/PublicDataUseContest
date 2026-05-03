@@ -303,6 +303,50 @@
     .footer-links a:hover { color: #fff; }
     .footer-copy { font-size: 0.78rem; margin-top: 12px; }
 
+    /* ── 검색 모달 ── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 16px;
+      width: min(960px, 95vw);
+      height: 88vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,.3);
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-bottom: 1px solid #E5E7EB;
+      flex-shrink: 0;
+    }
+    .modal-title { font-size: 0.9rem; font-weight: 700; color: #1F2937; }
+    .modal-close {
+      width: 32px; height: 32px;
+      border: none; background: #F3F4F6;
+      border-radius: 8px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: #6B7280;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: #E5E7EB; color: #111; }
+    .modal-iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+    }
+
     /* ── 폰트 저작권 ── */
     .font-credit {
       background: #070E1C;
@@ -345,9 +389,9 @@
     학교명을 검색하면 연도별 단가 추이와 지역 내 순위를 바로 확인할 수 있습니다.
   </p>
   <div class="cta-group">
-    <a class="btn btn-primary" href="search.html">
+    <button class="btn btn-primary" onclick="openSearch()">
       🔍 우리 학교 지역 교복 가격 알아보기
-    </a>
+    </button>
   </div>
   <div class="hero-kpis">
     <div class="kpi-item">
@@ -411,7 +455,7 @@
   <p class="section-desc">별도 설치 없이 브라우저에서 바로 사용할 수 있습니다.</p>
 
   <div class="service-grid" style="grid-template-columns: 1fr; max-width: 640px;">
-    <a class="service-card" href="search.html">
+    <a class="service-card" href="javascript:void(0)" onclick="openSearch()">
       <div class="sc-header amber">
         <div class="sc-icon">🔍</div>
         <div class="sc-title">우리 학교 단가 검색</div>
@@ -479,6 +523,37 @@
 
 </section>
 
+
+<!-- 검색 모달 -->
+<div class="modal-overlay" id="searchModal" onclick="handleOverlayClick(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">🔍 우리 학교 지역 교복 가격 알아보기</span>
+      <button class="modal-close" onclick="closeSearch()">✕</button>
+    </div>
+    <iframe class="modal-iframe" id="searchFrame" src="" title="학교 단가 검색"></iframe>
+  </div>
+</div>
+
+<script>
+  function openSearch() {
+    const modal = document.getElementById('searchModal');
+    const frame = document.getElementById('searchFrame');
+    if (!frame.src || frame.src === window.location.href) {
+      frame.src = 'search.html';
+    }
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSearch() {
+    document.getElementById('searchModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('searchModal')) closeSearch();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSearch(); });
+</script>
 
 <!-- 폰트 저작권 -->
 <div class="font-credit">
