@@ -120,14 +120,8 @@
       box-shadow: 0 4px 20px rgba(37,99,235,.4);
     }
     .btn-primary:hover { background: var(--blue2); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(37,99,235,.5); }
-    .btn-outline {
-      background: rgba(255,255,255,.08);
-      border: 1.5px solid rgba(255,255,255,.25);
-      color: #fff;
-    }
-    .btn-outline:hover { background: rgba(255,255,255,.15); transform: translateY(-2px); }
 
-    /* ── 히어로 KPI ── */
+/* ── 히어로 KPI ── */
     .hero-kpis {
       display: flex; gap: 40px; flex-wrap: wrap;
     }
@@ -139,20 +133,8 @@
     .hero-kpis .kpi-item:nth-child(4) .kpi-num { color: #F472B6; }
     .kpi-lbl  { font-size: 0.78rem; color: #94A3B8; margin-top: 2px; }
 
-    /* ── 스크롤 화살표 ── */
-    .scroll-hint {
-      position: absolute; bottom: 36px; left: 50%;
-      transform: translateX(-50%);
-      color: #94A3B8; font-size: 0.78rem;
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%,100% { transform: translateX(-50%) translateY(0); }
-      50%      { transform: translateX(-50%) translateY(8px); }
-    }
 
-    /* ── 섹션 공통 ── */
+/* ── 섹션 공통 ── */
     section { padding: 96px 80px; }
     .section-tag {
       font-size: 0.72rem; font-weight: 700; letter-spacing: 1.2px;
@@ -201,7 +183,7 @@
     .ic-desc  { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
 
     /* ── 서비스 카드 ── */
-    #services { background: var(--white); }
+    #search { background: var(--white); }
     .service-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -289,25 +271,8 @@
       color: #93C5FD;
     }
 
-    /* ── 푸터 ── */
-    footer {
-      background: #0F1F3A;
-      color: #64748B;
-      padding: 48px 80px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 32px;
-    }
-    .footer-logo { font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
-    .footer-desc { font-size: 0.83rem; line-height: 1.7; max-width: 320px; }
-    .footer-links { display: flex; flex-direction: column; gap: 8px; }
-    .footer-links a { font-size: 0.85rem; color: #94A3B8; text-decoration: none; transition: color .15s; }
-    .footer-links a:hover { color: #fff; }
-    .footer-copy { font-size: 0.78rem; margin-top: 12px; }
 
-    /* ── 검색 모달 ── */
+/* ── 검색 모달 ── */
     .modal-overlay {
       display: none;
       position: fixed; inset: 0; z-index: 500;

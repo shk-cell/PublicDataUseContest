@@ -485,11 +485,6 @@ function selectSchool(s) {
   document.getElementById("resultWrap").scrollIntoView({behavior:"smooth", block:"start"});
 }
 
-function resetPage() {
-  searchInput.value = "";
-  document.getElementById("resultWrap").classList.remove("visible");
-  currentSchool = null;
-}
 
 function fmt(v) { return v != null ? v.toLocaleString("ko-KR") + "원" : "-"; }
 function fmtN(v) { return v != null ? v.toLocaleString("ko-KR") + "명" : "-"; }
@@ -602,7 +597,6 @@ function renderNearby(s, latestY, latestD) {
   const allPrices = withPrice.map(x => x.price);
   if (latestD != null) allPrices.push(latestD);
   const maxP = Math.max(...allPrices);
-  const minP = Math.min(...allPrices);
 
   const meIdx = withPrice.findIndex(x => x.id === s.id);
 
@@ -667,7 +661,7 @@ function renderNearby(s, latestY, latestD) {
       <td><span class="nt-name" onclick="selectSchool(SCHOOLS.find(x=>x.id==='${row.id}'))">${row.name}${isMe ? " ★" : ""}</span></td>
       <td>
         <div class="price-bar-wrap">
-          <div class="price-bar ${isMe ? "" : ""}" style="width:${barW}px; background:${isMe ? C_DONG : "#93C5FD"}"></div>
+          <div class="price-bar" style="width:${barW}px; background:${isMe ? C_DONG : "#93C5FD"}"></div>
           <span class="price-txt">${p.toLocaleString("ko-KR")}원</span>
         </div>
       </td>
